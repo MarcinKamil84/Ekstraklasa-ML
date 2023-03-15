@@ -123,7 +123,7 @@ pmdarima==1.8.5
 preshed==3.0.8
 prompt-toolkit==3.0.38
 Protego==0.2.1
-protobuf==3.19.1
+protobuf==3.19.5
 psutil==5.9.4
 pure-eval==0.2.2
 pyarrow==11.0.0
