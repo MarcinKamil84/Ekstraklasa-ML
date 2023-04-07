@@ -385,5 +385,5 @@ ekstraklasa_balanced_train['goals'] = y_g_bal
 # EXPORTING DATAFRAMES FOR ML
 print('Exporting data...')
 
-ekstraklasa_train.to_pickle('./data/ekstraklasa_train.pkl')
-ekstraklasa_test.to_pickle('./data/ekstraklasa_test.pkl')
+ekstraklasa_train.to_pickle('./data/inputs/ekstraklasa_train.pkl')
+ekstraklasa_test.to_pickle('./data/inputs/ekstraklasa_test.pkl')
