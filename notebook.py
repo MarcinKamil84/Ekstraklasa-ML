@@ -4,30 +4,34 @@ print("<<< START >>>")
 
 print("Importing modules...")
 
-# HIDING PYCARET LOGS
-
-import webbrowser
-import os
-os.environ["PYCARET_CUSTOM_LOGGING_LEVEL"] = "CRITICAL"
-
-# General and feature engineering
-
-import pandas as pd
-import numpy as np
-import re
-from datetime import date, datetime, timedelta
-
-# Machine learning
-
-from imblearn.over_sampling import RandomOverSampler
 from pycaret.classification import *
 
 
+# # Setting date span
+
+print("Chose games dates to predict (yyyy-mm-dd):")
+
+start_d_input = input("Start date: ")
+end_d_input = input("End date: ")
+
+start_d_file = open("data/variables/start_d.txt", 'w')
+start_d_file.write(start_d_input)
+start_d_file.close()
+
+end_d_file = open("data/variables/end_d.txt", 'w')
+end_d_file.write(end_d_input)
+end_d_file.close()
+
+
+# # CONFIGURATION QUESTIONS
+
+question1 = input("Crawl for updated games? (y/n): ")
+question3 = input("Crawl for recent news articles? (y/n): ")
+question4 = input("Compile new features? (y/n): ")
+question2 = input("Train a new model? (y/n): ")
+
+
 # # CRAWLER
-
-# Executing crawler file
-
-question1 = input("Crawl for recent data? (y/n): ")
 
 if question1 == "y":
     
@@ -39,40 +43,49 @@ if question1 == "y":
 
 else:
     
-    print("Skipping updates...")
+    print("Updates skipped.")
         
     pass
 
 
-# # Setting date span
+# # NEWS NLP
 
-print("Chose games dates to predict (yyyy-mm-dd):")
+if question3 == "y":
 
-start_d_input = input("Start date: ")
-end_d_input = input("End date: ")
+    print("Executing news sentiment analysis predictions...")
 
-start_d = np.datetime64(start_d_input)
-end_d = np.datetime64(end_d_input)
+    from scripts import newscrawler_gol24
+    from nlp import news_predicting_gol24
+
+else:
+    
+    print("Skipping news sentiment analysis predictions.")
+        
+    pass
 
 
 # FEATURE ENGINEERING
 
-print("Feature engineering...")
+if question4 == "y":
 
-exec(open('./scripts/feature_engineering.py').read())
+    print("Feature engineering...")
+
+    from scripts import feature_engineering
+
+else:
+    
+    print("Feature engineering skipped.")
+        
+    pass
 
 
 # MACHINE LEARNING
-
-# ## Result model building
-
-question2 = input("Train a new model? (y/n): ")
 
 if question2 == "y":
     
     print("Training new model...")
     
-    exec(open('./scripts/model_training.py').read())
+    from scripts import model_training
 
 else:
     
@@ -83,6 +96,13 @@ else:
 
 print("Making predictions...")
 
-exec(open('./scripts/predict_models.py').read())
+from scripts import predict_models
+
+
+# VISUALIZING REPORT
+
+print("Making predictions...")
+
+from scripts import visualize
 
 print("<<< END >>>")
