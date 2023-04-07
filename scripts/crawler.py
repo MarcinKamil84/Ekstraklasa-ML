@@ -1,31 +1,16 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Imports
-
-# In[3]:
-
-
 import pandas as pd
-
 import scrapy
-
 from scrapy.crawler import CrawlerProcess
-from scrapy.linkextractors import LinkExtractor
-
 from bs4 import BeautifulSoup
-
 from crochet import setup, wait_for
 
-
-# In[7]:
-
-
-# Setting up the crawler
+# CROCHET SETUP
 
 setup()
 
-# Create the Spider class
+
+# CREATING SPIDER
+
 class Ekstraklasa(scrapy.Spider):
     name = "ekstraklasa_spider"
     custom_settings = {
@@ -36,7 +21,7 @@ class Ekstraklasa(scrapy.Spider):
         'DUPEFILTER_CLASS': 'scrapy.dupefilters.BaseDupeFilter'
     }
     
-    # start_requests method
+    # First parsing method: parse main url
     
     def start_requests(self):
         base_url = 'https://www.worldfootball.net/all_matches/pol-ekstraklasa-2022-2023/'
@@ -44,7 +29,7 @@ class Ekstraklasa(scrapy.Spider):
                          callback = self.parse_seasons)
         
         
-    # Second parsing method - parse by season
+    # Second parsing method: parse by season
     
     def parse_seasons(self, response):
         
@@ -62,7 +47,7 @@ class Ekstraklasa(scrapy.Spider):
           else:
             continue
             
-    # Third parsing method - parse actual results
+    # Third parsing method: parse actual results
     
     def parse_games(self, response):
         soup = BeautifulSoup(response.text, 'lxml')
@@ -75,31 +60,18 @@ class Ekstraklasa(scrapy.Spider):
                 cell = [td.text.strip() for td in cells]
                 teams_table.loc[len(teams_table)] = cell
         
-        filename = './data/ekstraklasa.csv'
+        filename = './data/ekstraklasa_historical_results.csv'
         teams_table.to_csv(filename, encoding='utf-8', mode='w')
 
-
-# In[8]:
-
-
-# Initialize the dictionary **outside** of the Spider class
 
 df_cols = ['data', 'godzina', 'dom', '-', 'wyjazd', 'wynik', 'pusta']
 teams_table = pd.DataFrame(columns=df_cols)
 
-# Run the Spider
 
-@wait_for(30)
+# CRAWLER FUNCTION
+
+@wait_for(30000)
 def run_spider():
     process = CrawlerProcess()
     proc = process.crawl(Ekstraklasa)
     return proc
-
-
-# In[9]:
-
-
-# Print a preview of courses
-
-print(teams_table)
-
