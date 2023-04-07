@@ -27,8 +27,9 @@ end_d_file.close()
 
 question1 = input("Crawl for updated games? (y/n): ")
 question3 = input("Crawl for recent news articles? (y/n): ")
+question5 = input("Train new NLP model? (y/n): ")
 question4 = input("Compile new features? (y/n): ")
-question2 = input("Train a new model? (y/n): ")
+question2 = input("Train new results model? (y/n): ")
 
 
 # # CRAWLER
@@ -44,6 +45,21 @@ if question1 == "y":
 else:
     
     print("Updates skipped.")
+        
+    pass
+
+
+# # NEWS NLP TRAINING
+
+if question5 == "y":
+
+    print("Executing news sentiment analysis predictions...")
+
+    from nlp import news_training_gol24
+
+else:
+    
+    print("Skipping news sentiment nlp training.")
         
     pass
 
