@@ -127,5 +127,5 @@ goals_all = predict_model(goals_final)
 print("Saving model...")
 save_model(goals_final, './models/goals_final')
 
-points_predictions.to_csv('./data/predictions/points_predictions.csv')
-goals_predictions.to_csv('./data/predictions/goals_predictions.csv')
+points_predictions.to_csv('./data/outputs/preds/points_predictions.csv')
+goals_predictions.to_csv('./data/outputs/preds/goals_predictions.csv')
