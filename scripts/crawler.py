@@ -60,7 +60,7 @@ class Ekstraklasa(scrapy.Spider):
                 cell = [td.text.strip() for td in cells]
                 teams_table.loc[len(teams_table)] = cell
         
-        filename = './data/ekstraklasa_historical_results.csv'
+        filename = './data/inputs/ekstraklasa_historical_results.csv'
         teams_table.to_csv(filename, encoding='utf-8', mode='w')
 
 
