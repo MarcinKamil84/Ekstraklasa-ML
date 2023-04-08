@@ -367,23 +367,31 @@ ekstraklasa_train = main_df.loc[(main_df['gameday'] != 0) & (main_df['gameday'] 
 ekstraklasa_train = ekstraklasa_train.loc[(main_df['czas_delta'] != main_df['czas_delta'].max())]
 ekstraklasa_train = ekstraklasa_train.loc[(ekstraklasa_train['news_pos'] != False)]
 
+
 # FIXING CLASS IMBALANCE
 print('Fixing class imbalance...')
 
 ekstraklasa_train.drop(['gameday'], inplace=True, axis=1)
 
-X_G = ekstraklasa_train.drop(['goals'], axis=1)
-y_g = ekstraklasa_train.loc[:,'goals']
-
 ros = RandomOverSampler(random_state=42)
 
-ekstraklasa_balanced_train, y_g_bal = ros.fit_resample(X_G, y_g)
+X_g = ekstraklasa_train.drop(['goals'], axis=1)
+y_g = ekstraklasa_train.loc[:,'goals']
 
-ekstraklasa_balanced_train['goals'] = y_g_bal
+ekstraklasa_balanced_goals_train, y_g_bal = ros.fit_resample(X_g, y_g)
 
+ekstraklasa_balanced_goals_train['goals'] = y_g_bal
+
+X_p = ekstraklasa_train.drop(['points'], axis=1)
+y_p = ekstraklasa_train.loc[:,'points']
+
+ekstraklasa_balanced_points_train, y_p_bal = ros.fit_resample(X_p, y_p)
+
+ekstraklasa_balanced_points_train['points'] = y_p_bal
 
 # EXPORTING DATAFRAMES FOR ML
 print('Exporting data...')
 
-ekstraklasa_train.to_pickle('./data/inputs/ekstraklasa_train.pkl')
+ekstraklasa_balanced_goals_train.to_pickle('./data/inputs/ekstraklasa_balanced_goals_train.pkl')
+ekstraklasa_balanced_points_train.to_pickle('./data/inputs/ekstraklasa_balanced_points_train.pkl')
 ekstraklasa_test.to_pickle('./data/inputs/ekstraklasa_test.pkl')
