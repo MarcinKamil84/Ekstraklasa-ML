@@ -73,4 +73,4 @@ results_df_final['wyjazd'] = results_df_final['wyjazd'].replace(inv_teams)
 
 # SAVING RESULTS
 
-results_df_final.to_pickle('./data/outputs/pred/results_final.pkl')
+results_df_final.to_pickle('./data/outputs/preds/results_final.pkl')
