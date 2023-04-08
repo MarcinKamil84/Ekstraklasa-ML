@@ -9,7 +9,7 @@ from imblearn.over_sampling import RandomOverSampler
 # LOADING DATA
 print('Loading data...')
 
-filepath = './data/ekstraklasa_historical_results.csv'
+filepath = './data/inputs/ekstraklasa_historical_results.csv'
 cols = ['data', 'dom', 'wyjazd', 'wynik']
 
 ekstraklasa = pd.read_csv(filepath, usecols=cols)
