@@ -53,11 +53,11 @@ points_holdout = predict_model(best_points, verbose=False)
 points_created = create_model(best_points, fold=10, verbose=False)
 
 roc_auc(points_created, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/points_auc.png')
+plt.savefig('./data/img/points_auc.png')
 plt.clf()
 
 confusion_matrix(points_created, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/points_conf.png')
+plt.savefig('./data/img/points_conf.png')
 plt.clf()
 
 # MODEL TUNING
@@ -70,11 +70,11 @@ points_ensemble = ensemble_model(points_tuned, fold = 10, method='Bagging', n_es
 points_final = finalize_model(points_ensemble)
 
 roc_auc(points_final, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/points_final_auc.png')
+plt.savefig('./data/img/points_final_auc.png')
 plt.clf()
 
 confusion_matrix(points_final, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/points_final_conf.png')
+plt.savefig('./data/img/points_final_conf.png')
 plt.clf()
 
 points_all = predict_model(points_final)
@@ -116,11 +116,11 @@ goals_holdout = predict_model(best_goals, verbose=False)
 goals_created = create_model(best_goals, fold=10, verbose=False)
 
 roc_auc(goals_created, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/goals_auc.png')
+plt.savefig('./data/img/goals_auc.png')
 plt.clf()
 
 confusion_matrix(goals_created, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), classes=['2', 'x', '1'], show=False)
-plt.savefig('./models/goals_conf.png')
+plt.savefig('./data/img/goals_conf.png')
 plt.clf()
 
 # MODEL TUNING
@@ -133,11 +133,11 @@ goals_ensemble = ensemble_model(goals_tuned, fold = 10, method='Bagging', n_esti
 goals_final = finalize_model(goals_ensemble)
 
 roc_auc(goals_final, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), show=False)
-plt.savefig('./models/goals_final_auc.png')
+plt.savefig('./data/img/goals_final_auc.png')
 plt.clf()
 
 confusion_matrix(goals_final, get_config('X_train'), get_config('y_train'), X_test=get_config('X_test'), y_test=get_config('y_test'), show=False)
-plt.savefig('./models/goals_final_conf.png')
+plt.savefig('./data/img/goals_final_conf.png')
 plt.clf()
 
 goals_all = predict_model(goals_final)
