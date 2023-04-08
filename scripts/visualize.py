@@ -110,8 +110,8 @@ with doc:
                         td_cell['style'] = td_color                        
                         print(td_cell)
 
-        img(src='..\..\img\points_auc.png')
-        img(src='..\..\img\points_conf.png')
+        img(src='..\..\img\points_final_auc.png')
+        img(src='..\..\img\points_final_conf.png')
 
     with div(cls='left_div'):
 
@@ -126,8 +126,8 @@ with doc:
                         td_cell['style'] = td_color                        
                         print(td_cell)
 
-        img(src='..\..\img\goals_auc.png')
-        img(src='..\..\img\goals_conf.png')
+        img(src='..\..\img\goals_final_auc.png')
+        img(src='..\..\img\goals_final_conf.png')
 
 
 # Opening summary
