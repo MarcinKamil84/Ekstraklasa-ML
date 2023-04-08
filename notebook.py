@@ -64,7 +64,7 @@ else:
     pass
 
 
-# # NEWS NLP
+# # NEWS NLP SCRAPING
 
 if question3 == "y":
 
