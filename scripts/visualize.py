@@ -26,9 +26,9 @@ end_d_file.close()
 start_d = np.datetime64(str(start_d_text))
 end_d = np.datetime64(str(end_d_text))
 
-points_predictions = pd.read_csv('./data/points_predictions.csv', header=None,  index_col=False)
+points_predictions = pd.read_csv('./data/outputs/preds/points_predictions.csv', header=None,  index_col=False)
 points_predictions = points_predictions.iloc[:,1:]
-goals_predictions = pd.read_csv('./data/goals_predictions.csv', header=None, index_col=False)
+goals_predictions = pd.read_csv('./data/outputs/preds/goals_predictions.csv', header=None, index_col=False)
 goals_predictions = goals_predictions.iloc[:,1:]
 
 # HTML variables
