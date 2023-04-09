@@ -26,10 +26,11 @@ end_d_file.close()
 start_d = np.datetime64(str(start_d_text))
 end_d = np.datetime64(str(end_d_text))
 
-points_predictions = pd.read_csv('./data/outputs/preds/points_predictions.csv', header=None,  index_col=False)
-points_predictions = points_predictions.iloc[:,1:]
-goals_predictions = pd.read_csv('./data/outputs/preds/goals_predictions.csv', header=None, index_col=False)
-goals_predictions = goals_predictions.iloc[:,1:]
+points_predictions = pd.read_csv('./data/outputs/preds/points_predictions.csv', header=None)
+points_predictions = points_predictions.iloc[[0,11]].iloc[:,1:]
+goals_predictions = pd.read_csv('./data/outputs/preds/goals_predictions.csv', header=None)
+goals_predictions = goals_predictions.iloc[[0,11]].iloc[:,1:]
+print(goals_predictions)
 
 # HTML variables
 
