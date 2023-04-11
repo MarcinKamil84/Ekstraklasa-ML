@@ -5,7 +5,7 @@ gensim==3.8.3
 h5py==3.8.0
 imbalanced_learn==0.7.0
 imblearn==0.0
-itemadapter==0.7.0
+itemadapter==0.8.0
 keras==2.12.0
 lazypredict==0.2.12
 matplotlib==3.6.3
